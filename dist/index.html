@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#78937c" />
+    <meta
+      name="description"
+      content="A finite retro office with 100 desks, a patterned ceiling and green carpet. Your Macintosh sits in the middle cluster; rotate the room and open James Lee’s portfolio on its illuminated screen."
+    />
+    <title>James Lee — Portfolio</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="immersive/desk.css" />
+    <link rel="preload" as="image" href="immersive/renders/room-overview.png" />
+    <script type="importmap">
+      { "imports": { "three": "./immersive/vendor/three.module.js" } }
+    </script>
+  </head>
+  <body class="booting">
+    <main
+      id="desk"
+      inert
+      aria-label="Finite office room with your workstation in the central cluster"
+    >
+      <img
+        id="still"
+        src="immersive/renders/room-overview.png"
+        alt="A large enclosed office with a patterned ceiling, white walls and green carpet. One illuminated Macintosh sits in the middle of 25 four-desk cubicle clusters."
+      />
+      <canvas
+        id="scene"
+        tabindex="0"
+        aria-label="Drag to rotate the desk. Scroll or pinch to zoom. Click the screen or press Enter to open the portfolio. Arrow keys rotate; Home resets the view."
+      ></canvas>
+      <p id="fallback-copy" hidden>3D is unavailable in this browser.</p>
+      <div class="view-controls" hidden>
+        <button
+          id="motion"
+          type="button"
+          aria-label="Pause idle animation"
+          aria-pressed="true"
+          title="Pause idle animation"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path id="motion-icon" d="M8 6v12M16 6v12" />
+          </svg>
+        </button>
+        <button
+          id="reset"
+          type="button"
+          aria-label="Reset camera view"
+          title="Reset camera view"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 9a7.5 7.5 0 1 1-.5 5M5 4v5h5" />
+          </svg>
+        </button>
+      </div>
+      <button id="open-computer" class="keyboard-action" type="button" disabled>
+        Open portfolio
+      </button>
+      <a id="skip" href="desktop.html?embedded=1" hidden>Open portfolio →</a>
+      <span id="scene-status" class="sr-only" role="status"></span>
+    </main>
+    <aside id="start-hint" aria-label="Directions">
+      <span id="office-directions"
+        ><span id="navigation-hint">Drag to rotate · Scroll to zoom</span
+        ><br /><span id="screen-hint"
+          >Click the lit screen to open the Mac</span
+        ></span
+      >
+      <span id="desktop-directions" hidden
+        >Click an app · Drag its title bar<br />Esc: close app / back to
+        desk</span
+      >
+      <span id="fallback-directions" hidden
+        >Use Open portfolio to enter the desktop</span
+      >
+    </aside>
+    <section id="loading" aria-label="Starting the office" aria-busy="true">
+      <div class="boot-terminal">
+        <div class="terminal-heading">
+          <span>WORKSTATION</span><span>SYSTEM STARTUP</span>
+        </div>
+        <p class="terminal-command">
+          <span aria-hidden="true">&gt;</span> open office
+        </p>
+        <ol id="boot-log" aria-label="Loaded components"></ol>
+        <div class="boot-progress">
+          <progress
+            id="boot-progress"
+            max="9"
+            value="0"
+            aria-label="Office loading progress"
+          ></progress
+          ><span id="boot-count" aria-hidden="true">0 / 9</span>
+        </div>
+        <p class="terminal-status">
+          <span id="loading-copy" role="status">Loading the office…</span
+          ><span class="terminal-cursor" aria-hidden="true">▋</span>
+        </p>
+      </div>
+    </section>
+    <div id="camcorder" aria-hidden="true">
+      <div class="tape-scanlines"></div>
+      <div class="tape-grain"></div>
+      <div class="tape-tracking"></div>
+    </div>
+    <section
+      id="computer-view"
+      aria-label="Interactive portfolio desktop"
+      hidden
+    >
+      <iframe
+        id="portfolio"
+        title="James Lee’s interactive portfolio"
+        allow="fullscreen"
+      ></iframe>
+      <button id="exit-computer" type="button">
+        ↙ Back to desk <kbd>Esc</kbd>
+      </button>
+    </section>
+    <noscript
+      ><style>
+        #loading,
+        #start-hint {
+          display: none;
+        }
+      </style>
+      <div class="no-script">
+        JavaScript is needed for the 3D desk.
+        <a href="James_Lee_Resume.pdf">Read the résumé</a>.
+      </div></noscript
+    >
+    <script>
+      window.deskModuleReady = false;
+      window.setTimeout(() => {
+        if (!window.deskModuleReady) {
+          window.officeBoot?.fail();
+          document.querySelector("#loading").hidden = true;
+          document.querySelector("#desk").inert = false;
+          document.body.classList.remove("booting");
+          document.body.classList.add("fallback");
+          document.querySelector("#fallback-copy").hidden = false;
+          document.querySelector("#skip").hidden = false;
+          document.querySelector("#office-directions").hidden = true;
+          document.querySelector("#fallback-directions").hidden = false;
+        }
+      }, 45000);
+    </script>
+    <script src="immersive/boot.js"></script>
+    <script type="module" src="immersive/desk.js"></script>
+  </body>
+</html>

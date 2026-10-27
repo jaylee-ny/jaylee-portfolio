@@ -1,0 +1,12 @@
+Old Standard TT
+Copyright 2011 The Old Standard Project Authors (amkryukov@gmail.com)
+License: SIL Open Font License 1.1; see oldstandardtt-LICENSE.txt.
+
+Pixelify Sans
+License: SIL Open Font License 1.1; see pixelifysans-LICENSE.txt for copyright and terms.
+
+Alfa Slab One
+License: SIL Open Font License 1.1; see AlfaSlabOne-LICENSE.txt for copyright and terms.
+
+Source: https://github.com/google/fonts/tree/main/ofl
+Font files are unmodified. The Pixelify Sans filename was shortened for its URL.

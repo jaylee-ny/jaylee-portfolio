@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#327b78" />
+    <meta
+      name="description"
+      content="James Lee’s portfolio, with a retro desktop, calculator, paint and notepad."
+    />
+    <title>James Lee — Desktop</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="fonts/OldStandard-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main id="desktop" class="desktop" aria-label="Retro desktop">
+      <nav id="applications" aria-label="Applications"></nav>
+      <section
+        id="showcase"
+        class="app-window"
+        role="dialog"
+        aria-labelledby="showcase-title"
+        tabindex="-1"
+        data-app="showcase"
+      >
+        <header class="titlebar">
+          <h1 id="showcase-title">Showcase</h1>
+          <button
+            type="button"
+            class="close-window"
+            aria-label="Close Showcase"
+          >
+            ×
+          </button>
+        </header>
+        <div class="showcase-layout">
+          <nav id="section-list" aria-label="Portfolio sections"></nav>
+          <div id="showcase-content" tabindex="0" aria-label="About"></div>
+        </div>
+      </section>
+      <section
+        id="calculator"
+        class="app-window"
+        role="dialog"
+        aria-labelledby="calculator-title"
+        tabindex="-1"
+        data-app="calculator"
+        hidden
+      >
+        <header class="titlebar">
+          <h1 id="calculator-title">Calculator</h1>
+          <button
+            type="button"
+            class="close-window"
+            aria-label="Close Calculator"
+          >
+            ×
+          </button>
+        </header>
+        <div class="calculator-body">
+          <output id="calculation" aria-label="Calculation"></output
+          ><output
+            id="calculator-display"
+            aria-live="polite"
+            aria-label="Result"
+            >0</output
+          >
+          <div id="calculator-keys"></div>
+        </div>
+      </section>
+      <section
+        id="paint"
+        class="app-window"
+        role="dialog"
+        aria-labelledby="paint-title"
+        tabindex="-1"
+        data-app="paint"
+        hidden
+      >
+        <header class="titlebar">
+          <h1 id="paint-title">Paint</h1>
+          <button type="button" class="close-window" aria-label="Close Paint">
+            ×
+          </button>
+        </header>
+        <div class="app-toolbar paint-tools">
+          <button type="button" id="paint-brush" aria-pressed="true">
+            Brush</button
+          ><button type="button" id="paint-eraser" aria-pressed="false">
+            Eraser</button
+          ><label
+            >Size
+            <select id="brush-size">
+              <option value="3">Small</option>
+              <option value="8" selected>Medium</option>
+              <option value="18">Large</option>
+            </select></label
+          ><button type="button" id="paint-undo" disabled>Undo</button
+          ><button type="button" id="paint-clear">Clear</button
+          ><button type="button" id="paint-save">Save PNG</button>
+        </div>
+        <div id="paint-palette" role="group" aria-label="Paint colors"></div>
+        <div class="canvas-area">
+          <canvas
+            id="paint-canvas"
+            width="800"
+            height="480"
+            aria-label="Drawing canvas. Use the brush or eraser to draw with a mouse, pen, or touch."
+          ></canvas>
+        </div>
+        <p class="app-status" id="paint-status" role="status">Brush · Black</p>
+      </section>
+      <section
+        id="notepad"
+        class="app-window"
+        role="dialog"
+        aria-labelledby="notepad-title"
+        tabindex="-1"
+        data-app="notepad"
+        hidden
+      >
+        <header class="titlebar">
+          <h1 id="notepad-title">Notepad</h1>
+          <button type="button" class="close-window" aria-label="Close Notepad">
+            ×
+          </button>
+        </header>
+        <div class="app-toolbar">
+          <button type="button" id="note-save">Save TXT</button>
+        </div>
+        <textarea
+          id="note-text"
+          aria-label="Your note"
+          spellcheck="false"
+          placeholder="Type here…"
+        ></textarea>
+        <p class="app-status" id="note-status" role="status">
+          Notes are saved on this device.
+        </p>
+      </section>
+      <a id="back-to-office" href="./" hidden>Back to desk</a>
+      <span id="desktop-status" class="sr-only" role="status"></span>
+    </main>
+    <noscript
+      ><div class="no-script">
+        JavaScript is needed to open this desktop.
+        <a href="James_Lee_Resume.pdf">Read James Lee’s résumé</a>.
+      </div></noscript
+    >
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
